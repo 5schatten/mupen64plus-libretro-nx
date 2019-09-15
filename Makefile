@@ -249,6 +249,10 @@ else ifneq (,$(findstring AMLG,$(platform)))
       endif
    endif
 
+   ifneq (,$(findstring mesa,$(platform)))
+     COREFLAGS += -DMESA_EGL_NO_X11_HEADERS
+   endif
+
    GL_LIB := -lGLESv2
    HAVE_NEON = 1
    WITH_DYNAREC=arm
