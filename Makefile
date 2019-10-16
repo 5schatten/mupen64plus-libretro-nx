@@ -138,6 +138,7 @@ else ifneq (,$(findstring rpi,$(platform)))
    endif
    ifeq ($(MESA), 1)
       GL_LIB := -lGLESv2
+      COREFLAGS += -DMESA_EGL_NO_X11_HEADERS
    else
       LLE = 0
       CPUFLAGS += -DVC
@@ -248,6 +249,10 @@ else ifneq (,$(findstring AMLG,$(platform)))
       else
          GLES = 1
       endif
+   endif
+
+   ifneq (,$(findstring mesa,$(platform)))
+     COREFLAGS += -DMESA_EGL_NO_X11_HEADERS
    endif
 
    GL_LIB := -lGLESv2
